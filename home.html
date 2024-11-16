@@ -1,30 +1,64 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Layout</title>
+    <style>
+        body {
+            background-color: #e0f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px; /* Space between buttons */
+        }
+
+        button {
+            text-align: center;
+            border-radius: 5px;
+            font-size: 20px;
+            box-shadow: 4px 5px #999;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .b1 {
+            background-color: lightcoral;
+        }
+
+        .b1:hover {
+            background-color: red;
+        }
+
+        .b2 {
+            background-color: lightcoral;
+        }
+
+        .b2:hover {
+            background-color: green;
+        }
+    </style>
+</head>
 <body>
+    <div class="button-container">
+        <button type="button" onclick="don()" class="b1">You Want to Donate</button>
+        <button type="button" onclick="dono()" class="b2">You Want Donor</button>
+    </div>
 
-<style>
-    button{
-        text-align: center;
-        border-radius: 5px;
-        font-size: 20px;
-        box-shadow: 4px 5px #999;
-        padding: 5px 10px;
-        justify-items: center;
-
-    }
-</style>
-
-<center><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <button type="button" onclick="don()" > You Want to Donate</button>
-    <button type="button" onclick="dono()" >  You Want  Donar</button>
-</center>
-
-<script>
-    function don(){
-        window.location="donarinfo.php"
-    }
-    function dono(){
-        window.location="donarlist.html"
-    }
-</script>
+    <script>
+        function don(){
+            window.location="donarinfo.php"
+        }
+        function dono(){
+            window.location="donarlist.html"
+        }
+    </script>
 </body>
 </html>

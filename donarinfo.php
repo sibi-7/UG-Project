@@ -1,4 +1,105 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donor Form</title>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 0;
+            top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Form Styling */
+        form {
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+            /* Allows internal scroll if needed */
+        }
+
+        table {
+            width: 100%;
+            border-spacing: 0;
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: -5px;
+            margin-bottom: 8px;
+            display: flex;
+            
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        /* Button Styles */
+        button {
+            margin-top: 10px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"] {
+            background-color: #28a745;
+            color: white;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        button[type="reset"] {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        button[type="reset"]:hover {
+            background-color: #c82333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            form {
+                padding: 20px;
+            }
+
+            td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
 <body>
     <?php
     $conn=mysqli_connect("localhost","root","","blooddonor");
@@ -27,6 +128,7 @@
     ?>
 
 <center><br><br><br><br><br><br><br><br><br>
+<h1 style="color: red"> Blood Donor Form </h1>
 <form method="POST" action="">
   <table>
     <tr>
@@ -86,7 +188,7 @@
     <tr>
       <td>
         <label for="phone">phono:</label>
-        <input name="mobileno"  type="tel" id="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br>
+        <input name="mobileno" id="phone" required><br>
       </td>
     </tr>
 
@@ -99,15 +201,15 @@
     <tr>
       <td>
         <label>Blood group:<select name="Bloodgroup">
-        <option name="Bloodgruop" value="A+">A+</option>
-        <option name="Bloodgruop" value="A-">A-</option>
-        <option name="Bloodgruop" value="B+">B+</option>
-        <option name="Bloodgruop" value="B-">B-</option>
-        <option name="Bloodgruop" value="O+">O+</option>
-        <option name="Bloodgruop" value="O-">O-</option>
-        <option name="Bloodgruop" value="AB+">AB+</option>
-        <option name="Bloodgruop" value="AB-">AB-</option>
-        <option name="Bloodgruop" value="Bombay Blood">bombay blood</option>
+        <option name="Bloodgroup" value="A+">A+</option>
+        <option name="Bloodgroup" value="A-">A-</option>
+        <option name="Bloodgroup" value="B+">B+</option>
+        <option name="Bloodgroup" value="B-">B-</option>
+        <option name="Bloodgroup" value="O+">O+</option>
+        <option name="Bloodgroup" value="O-">O-</option>
+        <option name="Bloodgroup" value="AB+">AB+</option>
+        <option name="Bloodgroup" value="AB-">AB-</option>
+        <option name="Bloodgroup" value="Bombay Blood">bombay blood</option>
         </select><br>
       </td>
     </tr>
