@@ -5,69 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blood Donor Form</title>
     <style>
-        /* General Body Styling */
         body {
             font-family: Arial, sans-serif;
-            background-color: #e0f7fa;
+            background-color: #f5f5f5;
             margin: 0;
             padding: 0;
-            top: 15px;
             display: flex;
-            align-items: center;
             justify-content: center;
-            height: 100vh;
+            align-items: start;
+            min-height: 100vh;
         }
 
-        /* Form Styling */
+        h1 {
+            color: #d32f2f;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
         form {
-            padding: 20px;
+            background-color: #ffffff;
+            padding: 30px;
+            max-width: 800px;
             width: 100%;
-            max-width: 600px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 8px;
             box-sizing: border-box;
-            /* Allows internal scroll if needed */
         }
 
-        table {
-            width: 100%;
-            border-spacing: 0;
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        td {
-            padding: 5px;
+        .form-group {
+            flex: 1 1 45%;
+            display: flex;
+            flex-direction: column;
         }
 
         label {
             font-weight: bold;
-            margin-top: -5px;
-            margin-bottom: 8px;
-            display: flex;
-            
+            margin-bottom: 5px;
+            font-size: 14px;
         }
 
-        input, select, button {
-            width: 100%;
+        input, select {
             padding: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            font-size: 16px;
-            box-sizing: border-box;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
 
         input[type="radio"] {
+            margin-right: 5px;
             width: auto;
-            margin-right: 10px;
         }
 
-        /* Button Styles */
+        .radio-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
         button {
-            margin-top: 10px;
-            padding: 12px;
+            padding: 12px 20px;
             font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
             border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            border-radius: 4px;
+            cursor: pointer;
         }
 
         button[type="submit"] {
@@ -88,148 +100,133 @@
             background-color: #c82333;
         }
 
-        /* Responsive Design */
         @media (max-width: 600px) {
-            form {
-                padding: 20px;
-            }
-
-            td {
-                padding: 10px;
+            .form-group {
+                flex: 1 1 100%;
             }
         }
     </style>
 </head>
 <body>
-    <?php
-    $conn=mysqli_connect("localhost","root","","blooddonor");
-    if(!$conn){
-     die("connection failed:".mysqli_connect_error());
-    }
-    if(isset($_POST['submit']))
-      {  $name=$_POST["name"];
-        $dob=$_POST["dob"];
-        $age=$_POST["age"];
-        $gender=$_POST["gender"];
-        $adds=$_POST["adds"];
-        $taluk=$_POST["taluk"];
-        $pincode=$_POST["pin"];
-        $distric=$_POST["distric"];
-        $state=$_POST["state"];
-        $mobileno=$_POST["mobileno"];
-        $mail=$_POST["mail"];
-        $bgroup=$_POST["Bloodgroup"];
-        $anydes=$_POST["disease"];
-        
-        $qu="insert into donarinfo values('$name','$dob','$age','$gender','$adds','$taluk','$pincode','$distric','$state','$mobileno','$mail','$bgroup','$anydes')";
 
-        $r=mysqli_query($conn,$qu);
-      }
-    ?>
+<?php
+$conn=mysqli_connect("localhost","root","","blooddonor");
+if(!$conn){
+ die("connection failed:".mysqli_connect_error());
+}
+if(isset($_POST['submit']))
+  {  $name=$_POST["name"];
+    $dob=$_POST["dob"];
+    $age=$_POST["age"];
+    $gender=$_POST["gender"];
+    $adds=$_POST["adds"];
+    $taluk=$_POST["taluk"];
+    $pincode=$_POST["pin"];
+    $distric=$_POST["distric"];
+    $state=$_POST["state"];
+    $mobileno=$_POST["mobileno"];
+    $mail=$_POST["mail"];
+    $bgroup=$_POST["Bloodgroup"];
+    $anydes=$_POST["disease"];
+    
+    $qu="insert into donarinfo values('$name','$dob','$age','$gender','$adds','$taluk','$pincode','$distric','$state','$mobileno','$mail','$bgroup','$anydes')";
+    $r=mysqli_query($conn,$qu);
 
-<center><br><br><br><br><br><br><br><br><br>
-<h1 style="color: red"> Blood Donor Form </h1>
+    if ($r) {
+      // Redirect to home page after successful submission
+      header("Location: index.html");
+      exit();
+  }
+  }
+?>
+
 <form method="POST" action="">
-  <table>
-    <tr>
-        <td>
-          <label>Name:<input type="text"  name="name" placeholder="enter name" required><br>
-        </td>
-    </tr>
+    <h1>Blood Donor Form</h1>
+    <div class="form-row">
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" name="name" placeholder="enter name" required>
+        </div>
 
-    <tr>
-        <td>
-          <label>DOB:<input type="date" name="dob"><br>
-        </td>
-    </tr>
-    
-    <tr>
-      <td>
-          <label>Age:<input type="number"  name="age" placeholder="enter your age"><br>
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-          <label>Gender:<input type="radio" value="male"  name="gender">Male <input type="radio" value="female" name="gender">female<br>
-      <td>
-    </tr>
-    
-    <tr>
-      <td>
-        <label>Address:<input name="adds" type="text"><br>
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-        <label>Taluk:<input name="taluk" type="text"><br>
-      </td>
-    </tr>
+        <div class="form-group">
+            <label>DOB:</label>
+            <input type="date" name="dob">
+        </div>
 
-    <tr>
-      <td>
-        <label>pincode:<input  name="pin" type="number"><br>
-      </td>
-    </tr>
+        <div class="form-group">
+            <label>Age:</label>
+            <input type="number" name="age" placeholder="enter your age">
+        </div>
 
-    <tr>
-      <td>
-        <label>Distric:<input name="distric" type="text"><br>
-      </td>
-    </tr>
+        <div class="form-group">
+            <label>Gender:</label>
+            <div class="radio-group">
+                <label><input type="radio" value="male" name="gender"> Male</label>
+                <label><input type="radio" value="female" name="gender"> Female</label>
+            </div>
+        </div>
 
-    <tr>
-      <td>
-        <label>State:<input name="state" type="text"><br>
-      </td>
-    </tr>
+        <div class="form-group">
+            <label>Address:</label>
+            <input name="adds" type="text">
+        </div>
 
-    <tr>
-      <td>
-        <label for="phone">phono:</label>
-        <input name="mobileno" id="phone" required><br>
-      </td>
-    </tr>
+        <div class="form-group">
+            <label>Taluk:</label>
+            <input name="taluk" type="text">
+        </div>
 
-    <tr>
-      <td>
-        <label>Email id:<input name="mail" type="email"><br>
-      </td>
-    </tr>
+        <div class="form-group">
+            <label>Pincode:</label>
+            <input name="pin" type="number">
+        </div>
 
-    <tr>
-      <td>
-        <label>Blood group:<select name="Bloodgroup">
-        <option name="Bloodgroup" value="A+">A+</option>
-        <option name="Bloodgroup" value="A-">A-</option>
-        <option name="Bloodgroup" value="B+">B+</option>
-        <option name="Bloodgroup" value="B-">B-</option>
-        <option name="Bloodgroup" value="O+">O+</option>
-        <option name="Bloodgroup" value="O-">O-</option>
-        <option name="Bloodgroup" value="AB+">AB+</option>
-        <option name="Bloodgroup" value="AB-">AB-</option>
-        <option name="Bloodgroup" value="Bombay Blood">bombay blood</option>
-        </select><br>
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-        <label>Any disease:<input  name="disease"type="text"><br>
-      </td>
-    </tr>
-   
-    <tr>
-      <td>
-        <button type="submit" name="submit">submit</button>
-   
-        <button type="reset">reset</button>
-      </td>
-    </tr>
+        <div class="form-group">
+            <label>Distric:</label>
+            <input name="distric" type="text">
+        </div>
 
-</table>
+        <div class="form-group">
+            <label>State:</label>
+            <input name="state" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phono:</label>
+            <input name="mobileno" id="phone" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email id:</label>
+            <input name="mail" type="email">
+        </div>
+
+        <div class="form-group">
+            <label>Blood group:</label>
+            <select name="Bloodgroup">
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="Bombay Blood">bombay blood</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Any disease:</label>
+            <input name="disease" type="text">
+        </div>
+    </div>
+
+    <div class="button-group">
+        <button type="submit" name="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </div>
 </form>
-</center>
+
 </body>
 </html>
