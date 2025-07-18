@@ -217,7 +217,7 @@ if(isset($_POST['submit']))
         </div>
 
         <div class="form-group">
-            <label>Any disease:</label>
+            <label>Any Description:</label>
             <input name="disease" type="text">
         </div>
     </div>
