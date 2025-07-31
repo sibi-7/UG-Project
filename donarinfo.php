@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blood Donor Form</title>
+    <link rel="stylesheet" href="assets/css/fontawsom-all.min.css">
+    <link rel="stylesheet" href="assets/css/chatbot.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -228,5 +230,7 @@ if(isset($_POST['submit']))
     </div>
 </form>
 
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/chatbot.js"></script>
 </body>
 </html>
