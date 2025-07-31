@@ -6,9 +6,6 @@ $( document ).ready(function() {
     }else{
         $('#menu-jk').scrollToFixed();
     }
-
-
-
 })
 
 function loginForm() {
